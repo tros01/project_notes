@@ -7,22 +7,35 @@
 
 ## Experiment setup
 
-Both experimental setups (i) and (ii) below yield the sample proportions $\hat{p}_1 = \frac{1}{n_1} \sum_{i=1}^{n_1} y_{1,i} = \frac{a}{n_1}$ and $\hat{p}_2 = \frac{1}{n_2} \sum_{i=1}^{n_2} y_{2,i} = \frac{c}{n_2}$. Each is obtainable from the first order conditions of the maximised Bernoulli likelihood $\mathcal{L}(p_k)=\prod_{i=1}^{n_k}p_k^{y_{k,i}}(1-p_k)^{1-y_{k,i}}$ where $y_k$ is the count of successes in $n_k$ trials in group $k$.
+Both experimental setups (i) and (ii) below yield the sample proportions,
+
+- $\hat{p}_1 = \frac{1}{n_1} \sum_{i=1}^{n_1} y_{1,i} = \frac{n_{11}}{n_1}$
+- $\hat{p}_2 = \frac{1}{n_2} \sum_{i=1}^{n_2} y_{2,i} = \frac{n_{21}}{n_2}$
+
+Each is obtainable from the first order conditions of the maximised Bernoulli likelihood,
+
+$$
+\mathcal{L}(p_k)=\prod_{i=1}^{n_k}p_k^{y_{k,i}}(1-p_k)^{1-y_{k,i}}
+$$
+
+Where $y_k$ is the count of successes in $n_k$ trials in group $k$.
 
 We can set up the contingency table in terms of counts:
 
 |           | success | failure | total |
 |-----------|---------|---------|-------|
-| **group 1** | $a$ | $b$ | $n_1=a+b$ |
-| **group 2** | $c$ | $d$ | $n_2=c+d$ |
-| **total** | $a+c$ | $b+d$ | $N=a+b+c+d$ |
+| **group 1** | $n_{11}$ | $n_{12}$ | $n_1=n_{11}+n_{12}$ |
+| **group 2** | $n_{21}$ | $n_{22}$ | $n_2=n_{21}+n_{22}$ |
+| **total** | $n_{11}+n_{21}$ | $n_{12}+n_{22}$ | $N=n_{11}+n_{12}+n_{21}+n_{22}$ |
 
-Then $p_1=\frac{a}{n_1}$ and $p_2=\frac{c}{n_2}$.
+Then $p_1=\frac{n_{11}}{n_1}$ and $p_2=\frac{n_{21}}{n_2}$.
 
 Or we can set up a general $2\times 2$ case:
 
-- group indicator $X \in \{0,1\}$ (control, exposure/treatment)
-- outcome indicator $Y \in \{0,1\}$ (failure, success)
+- group indicator $X \in \{0,1\} \equiv \{\text{control}, \text{treatment}\}$
+- outcome indicator $Y \in \{0,1\} \equiv \{\text{failure}, \text{success}\}$
+
+We can also label *treatment as exposure* and *success as conversion* and so on.
 
 | | success ($Y=1$) | failure ($Y=0$) | marginal $X$ |
 |-|-----------------|-----------------|--------------|
@@ -38,7 +51,7 @@ One participant undergoes $N$ trials. In $\frac{N}{2}$ trials, the single partic
 
 In this experiment, the unit of analysis is the trial. The $N$ trials are not independent but repeated (clustered).
 
-Note that clustered data require a different approach.
+This experiment requires a non-elementary approach owing to clustered data.
 
 **Experiment (ii)**: testing Scout cubs' taste ([A/B test](https://en.wikipedia.org/wiki/A/B_testing))
 
@@ -46,9 +59,19 @@ $N$ participants undergo one trial each. In $\frac{N}{2}$ trials, the participan
 
 In this experiment, the unit of analysis is the participant. The $N$ trials can claim to be independent.
 
+**Experiment (iii)**: testing the relationship between smoking and cancer
+
+*See* Agresti (2019), chapter 2. If a retrospective conditions on a design split into two groups unrepresentative of the background rate, the risk ratio is invalid. In other words, the orientation of the table matters.
+
 ## Bayesian estimation
 
-Set up the model with $y_k \mid p_k \sim \text{binomial}(n_k, p_k)$, $p_k \sim \text{Beta}(\frac{1}{2}, \frac{1}{2})$ (Jeffreys prior) and the implied posterior $p_k \mid y_k \sim \text{Beta}(\frac{1}{2}+y_k,\frac{1}{2}+n_k-y_k)$ for $k=1,2$ (our groups and outcomes). Then,
+Set up the model with, 
+
+- $y_k \mid p_k \sim \text{binomial}(n_k, p_k), \text{for } k=1,2$
+- $p_k \sim \text{Beta}(\alpha, \beta)$, choose $p_k \sim \text{Beta}(\frac{1}{2}, \frac{1}{2})$ (Jeffreys prior) 
+- $p_k \mid y_k \sim \text{Beta}(y_k+\alpha,n_k-y_k+\beta) = \text{Beta}(\frac{1}{2}+y_k,\frac{1}{2}+n_k-y_k)$ (implied posterior)
+
+Then,
 
 $$
 P(p_k \mid y_k) \propto P(y_k \mid p_k) P(p_k) = \left(p_k^{y_k}(1-p_k)^{n_k-y_k}\right)\left(p_k^{\frac{1}{2}-1}(1-p_k)^{\frac{1}{2}-1}\right) = p_k^{y_k-\frac{1}{2}}(1-p_k)^{n_k-y_k-\frac{1}{2}}
@@ -140,7 +163,7 @@ $$
 
 $$
 \widehat{\mathrm{SE}}(\log \hat \rho)
-= \sqrt{\frac{1 - \hat p_1}{\hat p_1 n_1} + \frac{1 - \hat p_2}{\hat p_2 n_2}}=\sqrt{\frac{1}{a} - \frac{1}{a+b} + \frac{1}{c} - \frac{1}{c+d}}
+= \sqrt{\frac{1 - \hat p_1}{\hat p_1 n_1} + \frac{1 - \hat p_2}{\hat p_2 n_2}}=\sqrt{\frac{1}{n_{11}} - \frac{1}{n_{11}+n_{12}} + \frac{1}{n_{21}} - \frac{1}{n_{21}+n_{22}}}
 $$
 
 $$
@@ -164,13 +187,13 @@ and take posterior quantiles (e.g. 95 %).
 #### Frequentist CI ([**Woolf**](https://doi.org/10.1111/j.1469-1809.1955.tb01348.x) (1955))
 
 $$
-\hat \theta = \frac{a d}{b c}, \quad
-\log \hat \theta = \log a + \log d - \log b - \log c,
+\hat \theta = \frac{n_{11} n_{22}}{n_{12} n_{21}}, \quad
+\log \hat \theta = \log n_{11} + \log n_{22} - \log n_{12} - \log n_{21},
 $$
 
 $$
 \widehat{\mathrm{SE}}(\ln{\hat{\theta}})
-= \sqrt{\frac{1}{a}+\frac{1}{b}+\frac{1}{c}+\frac{1}{d}}.
+= \sqrt{\frac{1}{n_{11}}+\frac{1}{n_{12}}+\frac{1}{n_{21}}+\frac{1}{n_{22}}}.
 $$
 
 Note that we commonly add $0.5$ to each denominator to avoid division by zero.
@@ -227,10 +250,11 @@ The central limit theorem them tells us,
 
 Recall the confusion matrix.
 
-|             | negative test (do not reject $H_0$) | positive test (reject $H_0$) |
-|-------------|------------------------------------|------------------------------|
-| $H_0$ true  | true negative | false positive (Type I Error) |
-| $H_0$ false | false negative (Type II Error) | true positive |
+|             | negative test (do not reject $H_0$) | positive test (reject $H_0$) | |
+|-------------|------------------------------------|------------------------------|-|
+| $H_0$ true  | true negative | false positive (Type I Error) | specificity $=\frac{TN}{TN+FP}$ |
+| $H_0$ false | false negative (Type II Error) | true positive | sensitivity $=\frac{TP}{FN+TP}$ |
+|             | negative predictive value $=\frac{TN}{TN+FN}$ | precision $=\frac{TP}{FP+TP}$ | accuracy $=\frac{TN+TP}{TN+FP+FN+TP}$ |
 
 Then,
 
@@ -274,16 +298,16 @@ $$
 Right-tailed p-value,
 
 $$
-p = \sum_{j=a}^{\min(n_1, a+c)} \frac{\binom{n_1}{j} \binom{n_2}{(a+c)-j}}{\binom{N}{a+c}}
+p = \sum_{j=n_{11}}^{\min(n_1, n_{11}+n_{12})} \frac{\binom{n_1}{j} \binom{n_2}{(n_{11}+n_{12})-j}}{\binom{N}{n_{11}+n_{12}}}
 $$
 
 Two-tailed p-value,
 
 $$
-p = \sum_{\substack{j=0 \\ P(j) \leq P(a)}}^{\min(n_1, a+c)} \frac{\binom{n_1}{j} \binom{n_2}{(a+c)-j}}{\binom{N}{a+c}}
+p = \sum_{\substack{j=0 \\ P(j) \leq P(n_{11})}}^{\min(n_1, n_{11}+n_{12})} \frac{\binom{n_1}{j} \binom{n_2}{(n_{11}+n_{12})-j}}{\binom{N}{n_{11}+n_{12}}}
 $$
 
-Where $P(a)$ is the observed table and $P(j) =  \frac{\binom{n_1}{j} \binom{n_2}{(a+c)-j}}{\binom{N}{a+c}}$.
+Where $P(n_{11})$ is the observed table and $P(j) =  \frac{\binom{n_1}{j} \binom{n_2}{(n_{11}+n_{12})-j}}{\binom{N}{n_{11}+n_{12}}}$.
 
 Check the p-value against the following decision rule,
 
@@ -293,13 +317,21 @@ Check the p-value against the following decision rule,
 ### Pearson chi squared test
 
 $$
-\chi^2=\sum_{ij}\frac{(O_{ij}-E_{ij})^2}{E_{ij}}\sim\chi_{(1)}^2
+\chi^2=\sum_{ij}\frac{(n_{ij}-\mu_{ij})^2}{\mu_{ij}}=\sum_{ij}\frac{(O_{ij}-E_{ij})^2}{E_{ij}}\sim\chi_{(1)}^2
 $$
 
-Where $O_{ij}$ are the observed $E_{ij}$ the expected counts.
+Where $n_{ij}=O_{ij}$ are the observed $\mu_{ij}=E_{ij}$ the expected counts and $df=(rc-1)-[(r-1)+(c-1)]=(r-1)(c-1)$ (parameters under $H_a$ less parameters under $H_0$).
 
-- $H_0:$ the variables are independent
-- $H_a:$ there is an association between at least two variables
+- $H_0: n_{ij}=\mu_{ij}$ (the variables are independent)
+- $H_a: n_{ij}\neq\mu_{ij}$ (there is evidence of an association between at least two variables)
+
+### Likelihood ratio statistic
+
+$\chi^2$ and the likelihood ratio test the like hypothesis of independence (no association between variables) and, asymptotically, share the distribution.
+
+$$
+G^2=2 \sum_{ij} n_{ij} \ln{ \left( \frac{n_{ij}}{\mu_{ij}} \right) } = 2 \sum_{ij} O_{ij} \ln{ \left( \frac{O_{ij}}{E_{ij}} \right) }  \sim \chi_{(1)}^2
+$$
 
 ---
 
