@@ -6,6 +6,7 @@ This folder contains reference notes on statistics, econometrics, machine learni
 
 | file | description | relevance |
 | ---- | ----------- | --------- |
+| `bayesian_stats_r.ipynb` | Notes on Bayesian statistics with code in **R**. | |
 | `bivariate_bernoulli_experiments.md` | Notes on discrete data analysis. | Treatment/control group analysis and A/B testing. |
 | `linear_algebra_py.ipynb` | Notes on linear algebra with code in **Python**. | |
 | `linear_algebra_r.ipynb` | Notes on linear algebra with code in **R**. | |
