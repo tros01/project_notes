@@ -57,9 +57,12 @@ $$
 ### Mean squared error
 
 $$
-MSE=\mathbf{E}\left[\left(\hat{\theta}-\theta\right)^2\right] \\
-=\mathbf{E}\left[\left(\hat{\theta} \pm \mathbf{E}\left[\hat{\theta}\right] -\theta\right)^2\right] \\
-=\text{Var}\left(\hat{\theta}\right)+b^2\left(\hat{\theta}\right)
+\begin{align}
+MSE
+&=\mathbf{E}\left[\left(\hat{\theta}-\theta\right)^2\right] \\
+&=\mathbf{E}\left[\left(\hat{\theta} \pm \mathbf{E}\left[\hat{\theta}\right] -\theta\right)^2\right] \\
+&=\text{Var}\left(\hat{\theta}\right)+b^2\left(\hat{\theta}\right)
+\end{align}
 $$
 
 ### Relative efficiency
@@ -78,4 +81,13 @@ $$
 
 ## Expected value and variance of the sample mean
 
+### Unbiasedness of $\bar{x}$
 
+$$
+\begin{align}
+\mathbf{E}\left[\bar{x}\right] &= \mu \\
+\mathbf{E}\left[\frac{1}{n}\sum_{i=1}^n x_i\right] &= \mu \\
+\frac{n}{n}\mathbb{E}\left[x_i\right] &= \mu \\
+\mu = \mu
+\end{align}
+$$
