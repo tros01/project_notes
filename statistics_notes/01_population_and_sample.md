@@ -33,3 +33,51 @@ $$
 $$
 
 Use $\text{SE}=\frac{\sigma}{\sqrt{n}}$ and $Z_{1-\alpha /2}$ (if the variance is known), $\text{SE}=\frac{\hat{\sigma}}{\sqrt{n}}$ and $t_{1-\alpha /2, n-1}$ (if the variance is unknown). $1-\alpha / 2 \Rightarrow$ a two-sided confidence interval.
+
+## Evaluation criteria
+
+### Unbiasedness
+
+$$
+\mathbb{E}\left[\theta\right]=\theta
+$$
+
+Which implies bias,
+
+$$
+b\left(\hat{\theta}\right)=\mathbb{E}\left[\theta\right]-\theta
+$$
+
+### Asymptotic unbiasedness
+
+$$
+b\left(\hat{\theta}\right) \to 0 \text{ as } n \to \infty
+$$
+
+### Mean squared error
+
+\begin{equation*}
+\begin{aligned}
+MSE={}&\mathbf{E}\left[\left(\hat{\theta}-\theta\right)^2\right] \\
+={}&\mathbf{E}\left[\left(\hat{\theta} \pm \mathbf{E}\left[\hat{\theta}\right] -\theta\right)^2\right] \\
+={}&\text{Var}\left(\hat{\theta}\right)+b^2\left(\hat{\theta}\right)
+\end{aligned}
+\end{equation*}
+
+### Relative efficiency
+
+$$
+\frac{MSE\left(\hat{\theta}_1\right)}{MSE\left(\hat{\theta}_2\right)}
+$$
+
+Where $MSE\left(\hat{\theta}_1\right) > MSE\left(\hat{\theta}_2\right)$ suggests $\hat{\theta}_2$ is preferrable.
+
+### Consistency
+
+$$
+\mathbf{E}\left[\left(\hat{\theta}-\theta\right)^2\right] \to 0 \text{ as } n \to \infty
+$$
+
+## Expected value and variance of the sample mean
+
+
