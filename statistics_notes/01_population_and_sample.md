@@ -92,7 +92,7 @@ $$
 \end{align}
 $$
 
-### Small sample variance
+### Finite sample variance
 
 $$
 \begin{align}
@@ -107,11 +107,24 @@ $$
 $$
 
 
-### Large sample variance ($n \gg 1$)
+### Infinite population variance ($n \gg 1$)
 
 $$
 \begin{align}
 \text{Var}\left(\bar{x}\right) &= \frac{1}{n^2} \text{Var}\left(x_1,\cdot,x_n\right) \\
 &\approx \frac{\sigma^2}{n}
+\end{align}
+$$
+
+### Sample variance
+
+$$
+\begin{align}
+s^2 &= \frac{1}{n} \sum \left(x_i - \bar{x} \right)^2 \\
+&= \frac{1}{n} \sum x_i^2 - \bar{x}^2 \\
+\mathbb{E}\left[s^2\right] &= \frac{1}{n} \sum \mathbb{E} \left[x_i^2 - \bar{x}^2 \right] \\
+&= \frac{1}{n} \sum \left( \text{Var}(x_i) \pm \mathbb{E}[x_i]^2 - \text{Var}(\bar{x}) \right) \\
+&= \frac{1}{n} \sum \left( \sigma^2 \pm \mu^2 - \frac{\sigma^2}{n}\left(1-\frac{n-1}{N-1}\right) \right) \\
+&= \sigma^2\frac{(n-1)}{n} \frac{N}{N-1}
 \end{align}
 $$
