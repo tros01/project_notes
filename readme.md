@@ -4,7 +4,7 @@ This folder contains reference notes on statistics, econometrics, machine learni
 
 ## File inventory
 
-| file | description | folder | relevance |
+| file | folder | description | relevance |
 | ---- | ----------- | ------ | --------- |
 | `bayesian_stats_r.ipynb` | | Notes on Bayesian statistics with code in **R**. | |
 | `bivariate_bernoulli_experiments.md` | | Notes on discrete data analysis. | Treatment/control group analysis and A/B testing. |
