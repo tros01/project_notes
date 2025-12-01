@@ -12,8 +12,8 @@
 
 | set |   | mean | variance |
 | --- | - | ---- | -------- |
-| population | $\\{x_i\\}_{i=1}^N$ | $\mu=\mathbb{E}\left[X\right]$ | $\sigma^2=\frac{1}{N}\sum_{i=1}^N \left(x_i-\mu\right)^2=\mathbb{E}\left[X^2\right]-\mathbb{E}\left[X\right]^2$ |
-| sample | $\\{x_i\\}_{i=1}^n$ | $\bar{x}=\frac{1}{n}\sum_{i=1}^n x_i$ | $\hat{\sigma}^2=\frac{1}{n-1}\sum_{i=1}^n \left(x_i-\bar{x}\right)^2$ |
+| population | $\\{ x_i \\}_{i=1}^N$ | $\mu=\mathbb{E}\left[X\right]$ | $\sigma^2=\frac{1}{N}\sum_{i=1}^N \left(x_i-\mu\right)^2=\mathbb{E}\left[X^2\right]-\mathbb{E}\left[X\right]^2$ |
+| sample | $\\{ x_i \\}_{i=1}^n$ | $\bar{x}=\frac{1}{n}\sum_{i=1}^n x_i$ | $\hat{\sigma}^2=\frac{1}{n-1}\sum_{i=1}^n \left(x_i-\bar{x}\right)^2$ |
 
 Random sampling assumes
 
