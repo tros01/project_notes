@@ -56,13 +56,11 @@ $$
 
 ### Mean squared error
 
-\begin{equation*}
-\begin{aligned}
-MSE={}&\mathbf{E}\left[\left(\hat{\theta}-\theta\right)^2\right] \\
-={}&\mathbf{E}\left[\left(\hat{\theta} \pm \mathbf{E}\left[\hat{\theta}\right] -\theta\right)^2\right] \\
-={}&\text{Var}\left(\hat{\theta}\right)+b^2\left(\hat{\theta}\right)
-\end{aligned}
-\end{equation*}
+$$
+MSE = \mathbf{E}\left[(\hat{\theta}-\theta)^2\right] \\
+= \mathbf{E}\left[(\hat{\theta} - \mathbf{E}[\hat{\theta}] - \theta)^2\right] \\
+= \text{Var}(\hat{\theta}) + b^2(\hat{\theta})
+$$
 
 ### Relative efficiency
 
