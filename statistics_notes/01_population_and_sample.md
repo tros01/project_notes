@@ -59,8 +59,8 @@ $$
 $$
 \begin{align}
 MSE
-&=\mathbf{E}\left[\left(\hat{\theta}-\theta\right)^2\right] \\
-&=\mathbf{E}\left[\left(\hat{\theta} \pm \mathbf{E}\left[\hat{\theta}\right] -\theta\right)^2\right] \\
+&=\mathbb{E}\left[\left(\hat{\theta}-\theta\right)^2\right] \\
+&=\mathbb{E}\left[\left(\hat{\theta} \pm \mathbb{E}\left[\hat{\theta}\right] -\theta\right)^2\right] \\
 &=\text{Var}\left(\hat{\theta}\right)+b^2\left(\hat{\theta}\right)
 \end{align}
 $$
@@ -76,7 +76,7 @@ Where $MSE\left(\hat{\theta}_1\right) > MSE\left(\hat{\theta}_2\right)$ suggests
 ### Consistency
 
 $$
-\mathbf{E}\left[\left(\hat{\theta}-\theta\right)^2\right] \to 0 \text{ as } n \to \infty
+\mathbb{E}\left[\left(\hat{\theta}-\theta\right)^2\right] \to 0 \text{ as } n \to \infty
 $$
 
 ## Expected value and variance of the sample mean
@@ -85,9 +85,22 @@ $$
 
 $$
 \begin{align}
-\mathbf{E}\left[\bar{x}\right] &= \mu \\
-\mathbf{E}\left[\frac{1}{n}\sum_{i=1}^n x_i\right] &= \mu \\
+\mathbb{E}\left[\bar{x}\right] &= \mu \\
+\mathbb{E}\left[\frac{1}{n}\sum_{i=1}^n x_i\right] &= \mu \\
 \frac{n}{n}\mathbb{E}\left[x_i\right] &= \mu \\
-\mu = \mu
+\mu &= \mu
+\end{align}
+$$
+
+### Small sample variance
+
+
+
+### Large sample variance ($n>>1$)
+
+$$
+\begin{align}
+\text{Var}\left(\bar{x}\right) &= \frac{1}{n^2} \text{Var}\left(x_1,\cdot,x_n\right) \\
+&\approx \frac{\sigma^2}{n}
 \end{align}
 $$
