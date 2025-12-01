@@ -94,9 +94,20 @@ $$
 
 ### Small sample variance
 
+$$
+\begin{align}
+\text{Var}\left(\bar{x}\right) &= \text{Cov}\left(\bar{x},\bar{x}\right) \\
+&= \text{Cov}\left(\frac{1}{n}\sum_{i=1}^n x_i,\frac{1}{n}\sum_{j=1}^n x_j\right) \\
+&= \frac{1}{n^2} \sum_{i=1}^n \sum_{j=1}^n \text{Cov}\left(x_i,x_j\right) \\
+&= \frac{1}{n^2} \left[ \sum_{i=1}^n \text{Cov}\left(x_i,x_j\right) + \sum_{i \neq j} \text{Cov}\left(x_i,x_j\right) \right] \\
+&= \frac{1}{n^2} \left[ n \text{Var}\left(x_i\right) + n(n-1)\left(-\frac{\sigma^2}{N-1}\right) \right] \\
+&= \frac{1}{n^2} \left[ n\sigma^2-\frac{n(n-1)}{N-1}\sigma^2 \right] \\
+&= \frac{\sigma^2}{n} \left[ 1-\frac{(n-1)}{N-1} \right]
+\end{align}
+$$
 
 
-### Large sample variance ($n>>1$)
+### Large sample variance ($n \gg 1$)
 
 $$
 \begin{align}
